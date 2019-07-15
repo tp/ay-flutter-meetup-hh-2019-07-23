@@ -57,6 +57,46 @@ class Greeter extends StatelessWidget {
   }
 }
 
+class MainNavigation extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class AppRoot extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Provider<BasketBloc>(
+      builder: (_) => BasketBloc(),
+      child: MainNavigation(),
+    );
+  }
+}
+
+// [...]
+
+class BasketIcon extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final basketState = Provider.of<BasketBloc>(context).value;
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Icon(
+          Icons.shopping_cart,
+          color: Colors.black,
+        ),
+        SizedBox(width: 5),
+        Text(
+          '${basketState.productCount}',
+        )
+      ],
+    );
+  }
+}
+
 class BasketItem {
   String key;
 
@@ -64,6 +104,8 @@ class BasketItem {
 }
 
 class Basket {
+  final productCount = 0;
+
   BasketItem exisitingItem(int productId) {
     return null;
   }
