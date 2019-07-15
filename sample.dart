@@ -67,7 +67,7 @@ class MainNavigation extends StatelessWidget {
 class AppRoot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Provider<BasketBloc>(
+    return ChangeNotifierProvider<BasketBloc>(
       builder: (_) => BasketBloc(),
       child: MainNavigation(),
     );
@@ -127,7 +127,7 @@ Future<Basket> basketWithUpdatedQuantities(
 class BasketBloc extends StateQueue<Basket> {
   BasketBloc() : super(BasketLoading());
 
-  /// Adds the produ t to the basket or increases its quantity by 1 if it exists
+  /// Adds the product to the basket or increases its quantity by 1 if it exists
   void addOrUpdateProductInBasket(int productId) {
     run((state) async* {
       yield BasketLoading();
